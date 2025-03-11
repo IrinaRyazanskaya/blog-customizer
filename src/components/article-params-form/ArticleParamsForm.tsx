@@ -1,4 +1,5 @@
 import { useCallback, useState, useRef, useEffect } from 'react';
+import type { FormEvent } from 'react';
 import clsx from 'clsx';
 
 import {
@@ -8,6 +9,7 @@ import {
 	contentWidthArr,
 	fontSizeOptions,
 } from 'src/constants/articleProps';
+import type { ArticleStateType } from 'src/constants/articleProps';
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 import { RadioGroup } from 'src/ui/radio-group';
@@ -17,7 +19,13 @@ import { Text } from 'src/ui/text';
 
 import styles from './ArticleParamsForm.module.scss';
 
-export const ArticleParamsForm = () => {
+export type ArticleParamsFormProps = {
+	defaults: ArticleStateType;
+	onApply: (settings: ArticleStateType) => void;
+	onReset: () => void;
+};
+
+export const ArticleParamsForm = ({ defaults, onApply, onReset }: ArticleParamsFormProps) => {
 	const wrapperRef = useRef<HTMLDivElement>(null);
 
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -28,11 +36,7 @@ export const ArticleParamsForm = () => {
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				isOpen &&
-				wrapperRef.current &&
-				!wrapperRef.current.contains(event.target as Node)
-			) {
+			if (isOpen && wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
 				setIsOpen(false);
 			}
 		};
@@ -44,39 +48,68 @@ export const ArticleParamsForm = () => {
 		};
 	}, [isOpen, setIsOpen]);
 
-	const [selectedFontFamilyOption, setSelectedFontFamilyOption] = useState(
-		fontFamilyOptions[0]
+	const [selectedFontFamily, setSelectedFontFamily] = useState(defaults.fontFamilyOption);
+	const [selectedFontSize, setSelectedFontSize] = useState(defaults.fontSizeOption);
+	const [selectedFontColor, setSelectedFontColor] = useState(defaults.fontColor);
+	const [selectedBackgroundColor, setSelectedBackgroundColor] = useState(defaults.backgroundColor);
+	const [selectedContentWidth, setSelectedContentWidth] = useState(defaults.contentWidth);
+
+	const handleFormSubmit = useCallback(
+		(event: FormEvent) => {
+			event.preventDefault();
+
+			onApply({
+				fontFamilyOption: selectedFontFamily,
+				fontSizeOption: selectedFontSize,
+				fontColor: selectedFontColor,
+				backgroundColor: selectedBackgroundColor,
+				contentWidth: selectedContentWidth,
+			});
+		},
+		[
+			onApply,
+			selectedFontFamily,
+			selectedFontSize,
+			selectedFontColor,
+			selectedBackgroundColor,
+			selectedContentWidth,
+		]
 	);
-	const [selectedFontSizeOption, setSelectedFontSizeOption] = useState(
-		fontSizeOptions[0]
-	);
-	const [selectedFontColor, setSelectedFontColor] = useState(fontColors[0]);
-	const [selectedBackgroundColor, setSelectedBackgroundColor] = useState(
-		backgroundColors[0]
-	);
-	const [selectedContentWidth, setSelectedContentWidth] = useState(
-		contentWidthArr[0]
-	);
+
+	const handleFormReset = useCallback(() => {
+		onReset();
+		setSelectedFontFamily(defaults.fontFamilyOption);
+		setSelectedFontSize(defaults.fontSizeOption);
+		setSelectedFontColor(defaults.fontColor);
+		setSelectedBackgroundColor(defaults.backgroundColor);
+		setSelectedContentWidth(defaults.contentWidth);
+	}, [
+		onReset,
+		setSelectedFontFamily,
+		setSelectedFontSize,
+		setSelectedFontColor,
+		setSelectedBackgroundColor,
+		setSelectedContentWidth,
+	]);
 
 	return (
 		<div ref={wrapperRef}>
 			<ArrowButton isOpen={isOpen} onClick={toggleForm} />
-			<aside
-				className={clsx(styles.container, isOpen && styles.container_open)}>
-				<form className={styles.form}>
+			<aside className={clsx(styles.container, isOpen && styles.container_open)}>
+				<form className={styles.form} onReset={handleFormReset} onSubmit={handleFormSubmit}>
 					<Text uppercase size={31} weight={800}>
 						Задайте параметры
 					</Text>
 					<Select
-						selected={selectedFontFamilyOption}
-						onChange={setSelectedFontFamilyOption}
+						selected={selectedFontFamily}
+						onChange={setSelectedFontFamily}
 						options={fontFamilyOptions}
 						title='Шрифт'
 					/>
 					<RadioGroup
-						selected={selectedFontSizeOption}
+						selected={selectedFontSize}
 						name='radio'
-						onChange={setSelectedFontSizeOption}
+						onChange={setSelectedFontSize}
 						options={fontSizeOptions}
 						title='Размер шрифта'
 					/>
