@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import clsx from 'clsx';
 
@@ -21,22 +21,32 @@ import styles from './ArticleParamsForm.module.scss';
 
 export type ArticleParamsFormProps = {
 	defaults: ArticleStateType;
-	onApply: (settings: ArticleStateType) => void;
-	onReset: () => void;
+	setArticleState: (settings: ArticleStateType) => void;
 };
 
-export const ArticleParamsForm = ({ defaults, onApply, onReset }: ArticleParamsFormProps) => {
+export const ArticleParamsForm = ({
+	defaults,
+	setArticleState,
+}: ArticleParamsFormProps) => {
 	const wrapperRef = useRef<HTMLDivElement>(null);
 
-	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [isOpen, setIsOpen] = useState(false);
 
-	const toggleForm = useCallback(() => {
+	const toggleForm = () => {
 		setIsOpen(!isOpen);
-	}, [isOpen, setIsOpen]);
+	};
 
 	useEffect(() => {
+		if (!isOpen) {
+			return;
+		}
+
 		const handleClickOutside = (event: MouseEvent) => {
-			if (isOpen && wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+			if (
+				isOpen &&
+				wrapperRef.current &&
+				!wrapperRef.current.contains(event.target as Node)
+			) {
 				setIsOpen(false);
 			}
 		};
@@ -46,58 +56,55 @@ export const ArticleParamsForm = ({ defaults, onApply, onReset }: ArticleParamsF
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isOpen, setIsOpen]);
+	}, [isOpen]);
 
-	const [selectedFontFamily, setSelectedFontFamily] = useState(defaults.fontFamilyOption);
-	const [selectedFontSize, setSelectedFontSize] = useState(defaults.fontSizeOption);
-	const [selectedFontColor, setSelectedFontColor] = useState(defaults.fontColor);
-	const [selectedBackgroundColor, setSelectedBackgroundColor] = useState(defaults.backgroundColor);
-	const [selectedContentWidth, setSelectedContentWidth] = useState(defaults.contentWidth);
-
-	const handleFormSubmit = useCallback(
-		(event: FormEvent) => {
-			event.preventDefault();
-
-			onApply({
-				fontFamilyOption: selectedFontFamily,
-				fontSizeOption: selectedFontSize,
-				fontColor: selectedFontColor,
-				backgroundColor: selectedBackgroundColor,
-				contentWidth: selectedContentWidth,
-			});
-		},
-		[
-			onApply,
-			selectedFontFamily,
-			selectedFontSize,
-			selectedFontColor,
-			selectedBackgroundColor,
-			selectedContentWidth,
-		]
+	const [selectedFontFamily, setSelectedFontFamily] = useState(
+		defaults.fontFamilyOption
+	);
+	const [selectedFontSize, setSelectedFontSize] = useState(
+		defaults.fontSizeOption
+	);
+	const [selectedFontColor, setSelectedFontColor] = useState(
+		defaults.fontColor
+	);
+	const [selectedBackgroundColor, setSelectedBackgroundColor] = useState(
+		defaults.backgroundColor
+	);
+	const [selectedContentWidth, setSelectedContentWidth] = useState(
+		defaults.contentWidth
 	);
 
-	const handleFormReset = useCallback(() => {
-		onReset();
+	const handleFormSubmit = (event: FormEvent) => {
+		event.preventDefault();
+
+		setArticleState({
+			fontFamilyOption: selectedFontFamily,
+			fontSizeOption: selectedFontSize,
+			fontColor: selectedFontColor,
+			backgroundColor: selectedBackgroundColor,
+			contentWidth: selectedContentWidth,
+		});
+	};
+
+	const handleFormReset = () => {
+		setArticleState(defaults);
 		setSelectedFontFamily(defaults.fontFamilyOption);
 		setSelectedFontSize(defaults.fontSizeOption);
 		setSelectedFontColor(defaults.fontColor);
 		setSelectedBackgroundColor(defaults.backgroundColor);
 		setSelectedContentWidth(defaults.contentWidth);
-	}, [
-		onReset,
-		setSelectedFontFamily,
-		setSelectedFontSize,
-		setSelectedFontColor,
-		setSelectedBackgroundColor,
-		setSelectedContentWidth,
-	]);
+	};
 
 	return (
 		<div ref={wrapperRef}>
 			<ArrowButton isOpen={isOpen} onClick={toggleForm} />
-			<aside className={clsx(styles.container, isOpen && styles.container_open)}>
-				<form className={styles.form} onReset={handleFormReset} onSubmit={handleFormSubmit}>
-					<Text uppercase size={31} weight={800}>
+			<aside
+				className={clsx(styles.container, isOpen && styles.container_open)}>
+				<form
+					className={styles.form}
+					onReset={handleFormReset}
+					onSubmit={handleFormSubmit}>
+					<Text uppercase as='h2' size={31} weight={800}>
 						Задайте параметры
 					</Text>
 					<Select
