@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
-import type { FormEvent } from "react";
 import clsx from "clsx";
+import type { FormEvent } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import {
   fontFamilyOptions,

@@ -1,7 +1,8 @@
+import { clsx } from "clsx";
+
 import { Text } from "src/ui/text";
 
 import styles from "./button.module.scss";
-import { clsx } from "clsx";
 
 export const Button = ({
   title,

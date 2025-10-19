@@ -1,14 +1,15 @@
+import clsx from "clsx";
 import { useState, useRef } from "react";
 import type { MouseEventHandler } from "react";
-import clsx from "clsx";
-import { OptionType } from "src/constants/article-props";
-import { Text } from "src/ui/text";
-import arrowDown from "src/images/arrow-down.svg";
-import { Option } from "./option";
-import { isFontFamilyClass } from "./helpers/is-font-family-class";
-import { useEnterSubmit } from "./hooks/use-enter-submit";
-import { useOutsideClickClose } from "./hooks/use-outside-click-close";
 
+import { Text } from "src/ui/text";
+import { OptionType } from "src/constants/article-props";
+import { useEnterSubmit } from "./hooks/use-enter-submit";
+import { isFontFamilyClass } from "./helpers/is-font-family-class";
+import { useOutsideClickClose } from "./hooks/use-outside-click-close";
+import { Option } from "./option";
+
+import arrowDown from "src/images/arrow-down.svg";
 import styles from "./select.module.scss";
 
 type SelectProps = {

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import type { RefObject } from "react";
+
 import { OptionType } from "src/constants/article-props";
 
 type UseEnterOptionSubmit = {

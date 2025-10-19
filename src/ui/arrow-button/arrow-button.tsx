@@ -1,7 +1,7 @@
-import arrow from "src/images/arrow.svg";
-
-import styles from "./arrow-button.module.scss";
 import clsx from "clsx";
+
+import arrow from "src/images/arrow.svg";
+import styles from "./arrow-button.module.scss";
 
 /** Функция для обработки открытия/закрытия формы */
 export type OnClick = () => void;

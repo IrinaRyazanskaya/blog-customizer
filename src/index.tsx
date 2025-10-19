@@ -6,8 +6,8 @@ import { ArticleParamsForm } from "./components/article-params-form/article-para
 import { defaultArticleState } from "./constants/article-props";
 import type { ArticleStateType } from "./constants/article-props";
 
-import "./styles/index.scss";
 import styles from "./styles/styles.module.scss";
+import "./styles/index.scss";
 
 const domNode = document.getElementById("root") as HTMLDivElement;
 const root = createRoot(domNode);
