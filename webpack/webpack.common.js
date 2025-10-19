@@ -53,10 +53,13 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
+              esModule: true,
               modules: {
                 mode: "local",
                 localIdentName: "[name]__[local]__[hash:base64:5]",
                 auto: /\.module\.\w+$/i,
+                namedExport: false,
+                exportLocalsConvention: "as-is",
               },
               importLoaders: 2, //Значение 2 говорит о том, что некоторые трансформации PostCSS нужно применить до css-loader.
             },

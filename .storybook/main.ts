@@ -24,8 +24,11 @@ const config: StorybookConfig = {
                 loader: require.resolve("css-loader"),
                 options: {
                   // Want to add more CSS Modules options? Read more here: https://github.com/webpack-contrib/css-loader#modules
+                  esModule: true,
                   modules: {
                     auto: true,
+                    namedExport: false,
+                    exportLocalsConvention: "as-is",
                   },
                 },
               },
@@ -40,8 +43,11 @@ const config: StorybookConfig = {
                 loader: require.resolve("css-loader"),
                 options: {
                   // Want to add more CSS Modules options? Read more here: https://github.com/webpack-contrib/css-loader#modules
+                  esModule: true,
                   modules: {
                     auto: true,
+                    namedExport: false,
+                    exportLocalsConvention: "as-is",
                   },
                   importLoaders: 2,
                 },
