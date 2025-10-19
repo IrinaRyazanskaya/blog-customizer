@@ -1,13 +1,16 @@
 .button {
+  cursor: pointer;
+
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
   box-sizing: border-box;
   width: 210px;
   height: 50px;
+  border: 1px solid #000;
+
   text-align: center;
-  border: 1px solid #000000;
-  cursor: pointer;
 }
 
 .button_apply {
@@ -23,7 +26,7 @@
 }
 
 .button_clear:hover {
-  background-color: #000000;
+  background-color: #000;
 }
 
 .button_clear:hover div {

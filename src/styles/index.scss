@@ -1,6 +1,6 @@
 /* Подключаем стили со шрифтами, так как они нужны на всех страницах */
 
-@import "~fonts/font";
+@import url("~fonts/font");
 
 /* Отключаем браузерные дефолтные стили для всех элементов */
 
@@ -86,10 +86,11 @@ audio,
 video {
   margin: 0;
   padding: 0;
+  border: 0;
+
   font: inherit;
   font-size: 100%;
   vertical-align: baseline;
-  border: 0;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -111,11 +112,12 @@ section {
 body {
   margin: 0;
   padding: 0;
+  border: 0;
+
   font: inherit;
   font-size: 100%;
   line-height: 1;
   vertical-align: baseline;
-  border: 0;
 }
 
 ol,
@@ -137,6 +139,6 @@ q::after {
 }
 
 table {
-  border-collapse: collapse;
   border-spacing: 0;
+  border-collapse: collapse;
 }
