@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "..", "./dist"), //путь куда будет собираться наш проект
     filename: production ? "static/scripts/[name].[contenthash].js" : "static/scripts/[name].js", // имя нашего бандла
-    publicPath: "/",
+    publicPath: "auto",
   },
   //Нужно помочь вебпаку научится работать с jsx и tsx файлами для этого используют ts loader
   module: {
