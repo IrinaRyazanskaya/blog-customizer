@@ -1,10 +1,11 @@
 import { useEffect } from "react";
+import type { RefObject } from "react";
 import { OptionType } from "src/constants/articleProps";
 
 type UseEnterOptionSubmit = {
-  onClick: (value: OptionType["value"]) => void;
   value: OptionType["value"];
-  optionRef: React.RefObject<HTMLLIElement>;
+  onClick: (value: OptionType["value"]) => void;
+  optionRef: RefObject<HTMLLIElement | null>;
 };
 
 export const useEnterOptionSubmit = ({ onClick, value, optionRef }: UseEnterOptionSubmit) => {

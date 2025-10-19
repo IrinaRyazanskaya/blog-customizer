@@ -1,10 +1,11 @@
 import { useEffect } from "react";
+import type { RefObject } from "react";
 
 type UseOutsideClickClose = {
   isOpen: boolean;
   onChange: (newValue: boolean) => void;
   onClose?: () => void;
-  rootRef: React.RefObject<HTMLDivElement>;
+  rootRef: RefObject<HTMLDivElement | null>;
 };
 
 export const useOutsideClickClose = ({

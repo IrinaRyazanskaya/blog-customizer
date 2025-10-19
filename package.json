@@ -72,7 +72,8 @@
     "webpack-merge": "^6.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,css,scss}": "npm run lint-fix",
+    "*.{css,scss}": "stylelint",
+    "*.{js,jsx,ts,tsx}": "eslint",
     "*.{js,jsx,ts,tsx,json,css,scss,md}": "npm run format"
   }
 }
