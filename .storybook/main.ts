@@ -23,7 +23,6 @@ const config: StorybookConfig = {
               {
                 loader: require.resolve("css-loader"),
                 options: {
-                  // Want to add more CSS Modules options? Read more here: https://github.com/webpack-contrib/css-loader#modules
                   esModule: true,
                   modules: {
                     auto: true,
@@ -42,7 +41,6 @@ const config: StorybookConfig = {
               {
                 loader: require.resolve("css-loader"),
                 options: {
-                  // Want to add more CSS Modules options? Read more here: https://github.com/webpack-contrib/css-loader#modules
                   esModule: true,
                   modules: {
                     auto: true,
@@ -56,7 +54,6 @@ const config: StorybookConfig = {
               {
                 loader: require.resolve("sass-loader"),
                 options: {
-                  // Want to add more Sass options? Read more here: https://webpack.js.org/loaders/sass-loader/#options
                   implementation: require.resolve("sass"),
                   sourceMap: true,
                   sassOptions: {},
@@ -94,4 +91,5 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
 };
+
 export default config;
