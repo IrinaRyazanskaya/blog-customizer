@@ -1,0 +1,21 @@
+.article {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  align-items: center;
+  justify-content: center;
+
+  max-width: var(--container-width, auto);
+  margin: 0 auto;
+  padding: 72px 0 144px;
+}
+
+.titleDescription {
+  max-width: 550px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  margin-top: 26px;
+}
