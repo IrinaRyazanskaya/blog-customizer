@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import type { RefObject } from "react";
-import { OptionType } from "src/constants/articleProps";
+import { OptionType } from "src/constants/article-props";
 
 type UseEnterOptionSubmit = {
   value: OptionType["value"];

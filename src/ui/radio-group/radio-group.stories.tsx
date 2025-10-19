@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Select } from "./Select";
+import { RadioGroup } from "./radio-group";
 import { useState } from "react";
 
-const meta: Meta<typeof Select> = {
-  component: Select,
+const meta: Meta<typeof RadioGroup> = {
+  component: RadioGroup,
 };
 
 export default meta;
-type Story = StoryObj<typeof Select>;
+type Story = StoryObj<typeof RadioGroup>;
 
-const SelectWithState = () => {
+const RadioGroupWithState = () => {
   const options = [
     { title: "1 опция", value: "1 опция", className: "" },
     { title: "2 опция", value: "2 опция", className: "" },
@@ -21,16 +21,17 @@ const SelectWithState = () => {
 
   return (
     <>
-      <Select
+      <RadioGroup
         selected={selected}
+        name="radio"
         onChange={setSelected}
         options={options}
-        title="Название выпадающего списка"
+        title="Название радиогруппы"
       />
     </>
   );
 };
 
-export const SelectStory: Story = {
-  render: () => <SelectWithState />,
+export const RadioGroupStory: Story = {
+  render: () => <RadioGroupWithState />,
 };

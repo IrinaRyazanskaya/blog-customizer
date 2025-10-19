@@ -1,6 +1,6 @@
 import arrow from "src/images/arrow.svg";
 
-import styles from "./ArrowButton.module.scss";
+import styles from "./arrow-button.module.scss";
 import clsx from "clsx";
 
 /** Функция для обработки открытия/закрытия формы */

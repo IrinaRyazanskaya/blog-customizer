@@ -1,5 +1,5 @@
 import { Decorator } from "@storybook/react";
-import styles from "./StoryDecorator.module.scss";
+import styles from "./story-decorator.module.scss";
 
 export const StoryDecorator: Decorator = (Story) => (
   <div className={styles.storybookContainer}>

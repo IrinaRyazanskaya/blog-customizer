@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ArrowButton } from "./ArrowButton";
+import { ArrowButton } from "./arrow-button";
 import { createElement, useState } from "react";
 
 const meta: Meta<typeof ArrowButton> = {

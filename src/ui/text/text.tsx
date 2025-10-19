@@ -1,8 +1,8 @@
 import { ElementType, ReactNode } from "react";
 import { clsx } from "clsx";
-import { FontFamiliesClasses } from "src/constants/articleProps";
+import { FontFamiliesClasses } from "src/constants/article-props";
 
-import styles from "./index.module.scss";
+import styles from "./text.module.scss";
 
 type TextProps = {
   /** Сам текст для вывода */

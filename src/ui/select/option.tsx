@@ -1,12 +1,12 @@
 import { useRef } from "react";
 import type { MouseEventHandler } from "react";
 import clsx from "clsx";
-import { OptionType } from "src/constants/articleProps";
+import { OptionType } from "src/constants/article-props";
 import { Text } from "src/ui/text";
-import { isFontFamilyClass } from "./helpers/isFontFamilyClass";
-import { useEnterOptionSubmit } from "./hooks/useEnterOptionSubmit";
+import { isFontFamilyClass } from "./helpers/is-font-family-class";
+import { useEnterOptionSubmit } from "./hooks/use-enter-option-submit";
 
-import styles from "./Select.module.scss";
+import styles from "./select.module.scss";
 
 type OptionProps = {
   option: OptionType;
